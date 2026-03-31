@@ -111,3 +111,10 @@ Ordem de Serviço Equipamento | Tabela de relacionamento muitos-para-muitos entr
 Visita Técnica | Vinculada a uma OS, registra agendamentos e realizações de atendimentos presenciais. |
 Conta a Receber	| Gerada automaticamente ao encerrar uma OS, registra o valor a ser pago pelo cliente. |
 
+---
+
+#### Entidade-Relacionamento
+
+### Dicionário de Dados
+
+
