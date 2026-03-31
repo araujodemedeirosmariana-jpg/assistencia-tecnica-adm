@@ -125,7 +125,7 @@ Conta a Receber	| Gerada automaticamente ao encerrar uma OS, registra o valor a 
 |  Nome         | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
 | ------------- | -------------------------------- | ------------ | ------- | --------------------- |
 | id | Identificador único gerado pelo SGBD	| SERIAL | --- | PK / Identity |
-| e-mail  e-mail do usuário utilizado para login  | VARCHAR | 150 | Unique / Not Null |
+| e-mail | e-mail do usuário utilizado para login  | VARCHAR | 150 | Unique / Not Null |
 | senha  | Senha criptografada do usuário | VARCHAR | 255 | Not Null |
 
 
