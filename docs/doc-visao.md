@@ -5,9 +5,6 @@ touch docs/doc-userstories.md
 
 # Documento de Visão
 
-Documento construído a partido do **Modelo BSI - Doc 001 - Documento de Visão** que pode ser encontrado no
-link: https://docs.google.com/document/d/1DPBcyGHgflmz5RDsZQ2X8KVBPoEF5PdAz9BBNFyLa6A/edit?usp=sharing
-
 ## Descrição do Projeto
 
 Título: Sistema de Gestão de Assistência Técnica
@@ -315,3 +312,7 @@ Data |	Versão	| Descrição	| Autor |
 | US02 | Gerenciar Estoque | RF03, RF04 | Nome do Membro B |
 
 ### Referências
+
+Documento construído a partido do **Modelo BSI - Doc 001 - Documento de Visão** que pode ser encontrado no
+link: https://docs.google.com/document/d/1DPBcyGHgflmz5RDsZQ2X8KVBPoEF5PdAz9BBNFyLa6A/edit?usp=sharing
+
