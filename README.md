@@ -9,7 +9,7 @@ O Sistema de Assistência Técnica tem como objetivo facilitar o gerenciamento d
 ## 🚀 Funcionalidades
 
 * Cadastro e gerenciamento de clientes
-* Cadastro de equipamentos vinculados aos clientes
+* Cadastro de equipamentos 
 * Criação e controle de ordens de serviço
 * Registro de visitas técnicas
 * Gerenciamento de funcionários
