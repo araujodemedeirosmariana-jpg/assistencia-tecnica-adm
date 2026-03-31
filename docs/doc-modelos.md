@@ -96,7 +96,7 @@ erDiagram
     ORDEM_SERVICO ||--o{ ORDEM_SERVICO_EQUIPAMENTO : "contem"
     EQUIPAMENTO ||--o{ ORDEM_SERVICO_EQUIPAMENTO : "utilizado"
 ```
-#### Descrição das Entidades
+### Descrição das Entidades
 
 Entidade                          |	Descrição   |
 ---------                         | ----------- |
@@ -116,5 +116,16 @@ Conta a Receber	| Gerada automaticamente ao encerrar uma OS, registra o valor a 
 ## Entidade-Relacionamento
 
 ### Dicionário de Dados
+
+|   Tabela   | USUARIO |
+| ---------- | ----------- |
+| Descrição  | Armazena as informações de um laboratório acadêmico. |
+| Observação | Laboratórios acadêmicos podem ser de Ensino, Pesquisa, Extensão, P&D, etc. |
+
+|  Nome         | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
+| ------------- | -------------------------------- | ------------ | ------- | --------------------- |
+| id | Identificador único gerado pelo SGBD	| SERIAL | --- | PK / Identity |
+| e-mail  e-mail do usuário utilizado para login  | VARCHAR | 150 | Unique / Not Null |
+| senha  | Senha criptografada do usuário | VARCHAR | 255 | Not Null |
 
 
