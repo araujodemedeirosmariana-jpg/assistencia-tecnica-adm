@@ -245,64 +245,6 @@ Data | Risco | Prioridade | Responsável | Status | Providência/Solução |
 31/03/2026 | Indisponibilidade ou falha na integração com gateway de pagamento. | Média | Jadson | Monitorando | Pesquisar e ter um plano B com outro provedor de pagamento; implementar registro de falhas para retentativa. |
 31/03/2026 | Dificuldade de adaptação dos usuários à nova ferramenta. |	Média |	Mariana | Monitorando |	Realizar treinamentos iniciais e produzir manuais de usuário simplificados. |
 
---------
-
-## Histórico de Revisões
-
-Data |	Versão	| Descrição	| Autor |
------- | ------ | ------ | ------ |
-31/03/2026	| 0.0.1	| Criação do documento e template | Mariana
-31/03/2026	| 0.0.2	| Detalhamento dos User Stories US01 | Mariana
-31/03/2026	| 0.0.3	| Detalhamento dos User Stories US02 | Jadson
-31/03/2026	| 0.0.4	| Detalhamento dos User Stories US03 | Jadson
-31/03/2026	| 0.0.5	| Detalhamento dos User Stories US04 | Mariana
-31/03/2026	| 0.0.6	| Detalhamento dos User Stories US05 | Jadson
-31/03/2026	| 0.0.7	| Detalhamento dos User Stories US06 | Mariana
-31/03/2026	| 1.0.0 |Documento completo com todos os User Stories| Mariana e Jadson
-
---------
-
-## User Story US01 - Manter Cadastro de Clientes
-
-|               |                                                                |
-| ------------- | :------------------------------------------------------------- |
-| **Descrição** | O sistema deve manter um cadastro de cliente que tem acesso ao sistema via login e senha. Um usuário tem os atributos name, id, email, username, data de nascimento, tipo de usuário, status, password, endereço, contato, CPF (pessoa fisica), razao social, nome fantasia(juristica). O email será o login e ele pode registrar-se diretamente no sistema. Além disso o usuário poderá alterar alguns dados, como o e-mail ou a senha. O usuário administrador do sistema pode realizar as operações de adicionar, alterar, desativar clientes do sistemapara manter o cadastro atualizado e garantir informações precisas para as ordens de serviço. |
-
-| **Requisitos envolvidos** |                                                    |
-| ------------- | :------------------------------------------------------------- |
-| RF01.1          | Cadastrar Cliente |
-| RF01.2          | Alterar Cliente  |
-| RF01.3          | Consultar Cliente |
-| RF01.4          | Desativar Cliente |
-| RF01.5          | Vizualizar detalhes do Usuário |
-
-|                           |                                     |
-| ------------------------- | ----------------------------------- | 
-| **Prioridade**            | Essencial                           | 
-| **Estimativa**            | 8 h                                 | 
-| **Tempo Gasto (real):**   |                                     | 
-| **Tamanho Funcional**     | 7 PF                                | 
-| **Analista**              | Mariana                             | 
-| **Desenvolvedor**         | Jadson                              | 
-| **Revisor**               | Maria                               | 
-| **Testador**              | Jadson                              | 
-
-
-| Testes de Aceitação (TA) |  |
-| ----------- | --------- |
-| **Código**      | **Descrição** |
-| **TA01.01** | Descrever o teste de aceitação 01 do US01 |
-| **TA01.02** | Descrever o teste de aceitação 02 do US01 |
-| **TA01.03** | Descrever o teste de aceitação 03 do US01 |
-| **TA01.04** | Descrever o teste de aceitação 04 do US01 |
-
-
-## Lista de User Stories (Versão 1)
-
-| ID | Título do User Story | Requisitos Funcionais Relacionados | Responsável pelo Detalhamento |
-|:---|:---|:---|:---|
-| US01 | Manter Cadastro de Usuários | RF01, RF02 | Nome do Membro A |
-| US02 | Gerenciar Estoque | RF03, RF04 | Nome do Membro B |
 
 ### Referências
 
