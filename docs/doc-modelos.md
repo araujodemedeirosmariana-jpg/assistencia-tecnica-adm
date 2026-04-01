@@ -87,8 +87,8 @@ erDiagram
     
     USUARIO ||--o| CLIENTE : "pode ser"
     USUARIO ||--o| FUNCIONARIO : "pode ser"
-    CLIENTE ||--o| CLIENTE_PF : "classificado CPF"
-    CLIENTE ||--o| CLIENTE_PJ : "classificado CNPJ"
+    CLIENTE ||--o| CLIENTE_PF : "classificado PF"
+    CLIENTE ||--o| CLIENTE_PJ : "classificado PJ"
     CLIENTE ||--o{ ORDEM_SERVICO : "solicita"
     FUNCIONARIO ||--o{ ORDEM_SERVICO : "executa"
     ORDEM_SERVICO ||--o{ VISITA_TECNICA : "gera"
@@ -102,8 +102,8 @@ Entidade                          |	Descrição   |
 ---------                         | ----------- |
 Usuário	   | Entidade base para autenticação, contendo credenciais de acesso (email e senha). |
 Cliente	   | Entidade base para clientes, contendo atributos comuns a qualquer cliente (nome, endereço, contato). Possui uma especialização total e disjunta para CPF e CNPJ. |
-Cliente PF	| Especialização da entidade Cliente. Armazena dados específicos de Pessoa Física: CPF e data de nascimento. |
-Cliente PJ	| Especialização da entidade Cliente. Armazena dados específicos de Pessoa Jurídica: CNPJ, razão social e nome fantasia. |
+Cliente CPF	| Especialização da entidade Cliente. Armazena dados específicos de Pessoa Física: CPF e data de nascimento. |
+Cliente CNPJ	| Especialização da entidade Cliente. Armazena dados específicos de Pessoa Jurídica: CNPJ, razão social e nome fantasia. |
 Funcionário	 | Herda de Usuário. Armazena dados profissionais, diferenciando Técnico e Administrativo (especialização total e disjunta). |
 Ordem de Serviço | Núcleo do sistema, registra cada solicitação de serviço, seu status, valor, e vincula cliente e técnico responsável. |
 Equipamento	| Representa os itens que serão reparados ou utilizados nos serviços. |
@@ -119,8 +119,8 @@ Conta a Receber	| Gerada automaticamente ao encerrar uma OS, registra o valor a 
 
 |   Tabela   | USUARIO |
 | ---------- | ----------- |
-| Descrição  | Armazena as informações de um laboratório acadêmico. |
-| Observação | Laboratórios acadêmicos podem ser de Ensino, Pesquisa, Extensão, P&D, etc. |
+| Descrição  | Armazena as credenciais de autenticação dos usuários do sistema. |
+| Observação | Um usuário pode ser cliente ou funcionário, mas não ambos simultaneamente. |
 
 |  Nome         | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
 | ------------- | -------------------------------- | ------------ | ------- | --------------------- |
@@ -128,4 +128,16 @@ Conta a Receber	| Gerada automaticamente ao encerrar uma OS, registra o valor a 
 | e-mail | e-mail do usuário utilizado para login  | VARCHAR | 150 | Unique / Not Null |
 | senha  | Senha criptografada do usuário | VARCHAR | 255 | Not Null |
 
+|   Tabela   | CLIENTE |
+| ---------- | ----------- |
+| Descrição  | Armazena as informações gerais dos clientes da assistência técnica. |
+| Observação | Clientes podem ser Pessoa Física (PF) ou Pessoa Jurídica (PJ). A diferenciação é feita pelo campo tipo, com dados complementares armazenados nas tabelas Cliente_PF e Cliente_PJ. |
+
+
+|  Nome         | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
+| ------------- | -------------------------------- | ------------ | ------- | --------------------- |
+| id | Identificador único | SERIAL | --- | PK / Identity |
+| nome | Nome completo do cliente (PF) ou razão social (PJ) |
+| e-mail | e-mail do usuário utilizado para login  | VARCHAR | 150 | Unique / Not Null |
+| senha  | Senha criptografada do usuário | VARCHAR | 255 | Not Null |
 
