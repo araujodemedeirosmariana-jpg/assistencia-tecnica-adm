@@ -15,7 +15,9 @@ Este documento descreve os User Stories criados a partir da Lista de Requisitos 
 | Data       | Versão  | Descrição                                      | Autor   |
 |------------|--------|-----------------------------------------------|--------|
 | 30/03/2026 | 0.1.0  | Criação inicial da lista de User Stories      | Jadson |
-| 31/03/2026 | 1.0.0  | Documento completo com User Stories revisado  | Equipe |
+| 31/03/2026 | 1.0.0  | Ajuste doc-visao.md  | Mariana |
+| 31/03/2026 | 1.0.0  | Documentação arquitetura.md  | Jadson |
+| 31/03/2026 | 1.0.0  | Documento completo com User Stories revisado  | Jadson |
 
 ---
 
