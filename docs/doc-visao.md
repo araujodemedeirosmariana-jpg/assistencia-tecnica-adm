@@ -1,27 +1,30 @@
-
 # Documento de Visão
 
 ## Descrição do Projeto
 
 Título: Sistema de Gestão de Assistência Técnica
 
-Descrição: O Sistema de Gestão de Assistência Técnica é uma aplicação web que tem como objetivo gerenciar clientes, ordens de serviço, equipamentos e visitas técnicas de forma organizada e eficiente. Ele permite cadastrar e acompanhar ordens de serviço, e gerar relatórios para facilitar o acompanhamento das atividades. O sistema oferece diferentes perfis de usuários, possa acessar as funcionalidades de acordo com suas permissões.
+Descrição: O Sistema de Gestão de Assistência Técnica é uma aplicação web que tem como objetivo gerenciar clientes, ordens de serviço, equipamentos e visitas técnicas de forma organizada e eficiente. Ele permite cadastrar e acompanhar ordens de serviço e gerar relatórios para facilitar o acompanhamento das atividades. O sistema oferece diferentes perfis de usuários, permitindo que cada um acesse funcionalidades específicas de acordo com suas permissões.
 
+---
 
 ## Equipe e Definição de Papéis
 
 Membro     |     Papel   |   E-mail   |
 ---------  | ----------- | ---------- |
-Jadson    | --  | -- |
+Jadson    | Líder Técnico, Desenvolvedor, Testador | jadsonhipolito@gmail.com |
 Mariana     | Analista, Desenvolvedor | araujodemedeirosmariana@gmail.com |
 
+---
 
 ### Matriz de Competências
 
 Membro     |     Competências   |
 ---------  | ----------- |
-Jadson    | --  |
+Jadson    | Python, FastAPI, SQLite, Git/GitHub, Modelagem de Dados, Arquitetura de Software |
 Mariana     | -- | 
+
+---
 
 ## Perfis dos Usuários
 
@@ -32,6 +35,8 @@ Perfil                                 | Descrição   |
 Cliente | Este usuário pode verificar suas ordens de serviço, consultar contas a receber e realizar pagamentos online de serviços concluídos.
 Administrativo | Este usuário é responsável pela gestão do sistema, cadastro de informações, controle financeiro e registro de pagamentos recebidos fora do sistema.
 Técnico | Este usuário é responsável pela execução dos serviços, atualização das ordens de serviço e registro de peças utilizadas.
+
+---
 
 ## Lista de Requisitos Funcionais
 
@@ -229,6 +234,7 @@ Ordem de Serviço Equipamento | Tabela de relacionamento muitos-para-muitos entr
 Visita Técnica | Vinculada a uma OS, registra agendamentos e realizações de atendimentos presenciais. |
 Conta a Receber	| Gerada automaticamente ao encerrar uma OS, registra o valor a ser pago pelo cliente. |
 
+
 ## Lista de Requisitos Não-Funcionais
 
 Requisito                                 | Descrição   |
@@ -237,6 +243,8 @@ RNF001 - Deve ser acessível via navegador | Deve abrir perfeitamento no Firefox
 RNF002 - Disponibilidade do Sistema |O sistema deve estar disponível 24/7, com um tempo de inatividade mínimo para manutenção programada. |
 RNF003 - Usabilidade | O sistema deverá possuir uma interface intuitiva e de fácil utilização, permitindo que usuários com pouca experiência em sistemas consigam utilizá-lo sem dificuldades significativas. |
 RNF04 -	Segurança |	As senhas dos usuários devem ser armazenadas de forma criptografada (hash). O controle de acesso deve ser rigorosamente baseado nos perfis definidos. |
+
+---
 
 ## Riscos
 
