@@ -2,71 +2,157 @@
 
 ## 📊 Diagrama Entidade-Relacionamento (DER)
 
+
 ```mermaid
 erDiagram
+    USUARIO {
+        int id PK
+        string email
+        string senha
+    }
+    
     CLIENTE {
-        int id_cliente
+        int id PK
         string nome
         string endereco
         string contato
+        string tipo
+    }
+    
+    CLIENTE_PF {
+        int id PK
         string cpf
+        date data_nascimento
     }
-
-    FUNCIONARIO {
-        int id_funcionario
-        string nome
-        string endereco
-        string contato
-        string horario
-        float salario
+    
+    CLIENTE_PJ {
+        int id PK
         string cnpj
-        boolean ativo
+        string razao_social
+        string nome_fantasia
     }
-
+    
+    FUNCIONARIO {
+        int id PK
+        string nome
+        string cpf
+        string contato
+        float salario
+        string tipo
+        string horario_expediente
+    }
+    
+    ORDEM_SERVICO {
+        int id PK
+        date data_abertura
+        date data_encerramento
+        string descricao_problema
+        string status
+        float valor_total
+        int cliente_id FK
+        int tecnico_id FK
+    }
+    
     EQUIPAMENTO {
-        int id_equipamento
+        int id PK
+        string codigo
         string tipo
         string marca
         string modelo
-        string numero_serie
-        int id_cliente
+        int quantidade
     }
-
-    ORDEM_SERVICO {
-        int id_os
-        int id_cliente
-        string descricao
-        string status
-        date data_abertura
-        date data_encerramento
-    }
-
-    CONTA {
-        int id_conta
-        int id_os
-        float valor
-        string tipo
-        string status
-    }
-
+    
     VISITA_TECNICA {
-        int id_visita
-        int id_os
-        int tecnico
-        date data
-        string horario
-        string observacoes
+        int id PK
+        date data_agendamento
+        date data_realizacao
+        string resultado
+        int os_id FK
     }
-
+    
+    CONTA_RECEBER {
+        int id PK
+        float valor
+        date data_emissao
+        date data_pagamento
+        string status_pagamento
+        int os_id FK
+    }
+    
     ORDEM_SERVICO_EQUIPAMENTO {
-        int id_os
-        int id_equipamento
+        int os_id FK
+        int equipamento_id FK
+        int quantidade
     }
+    
+    USUARIO ||--o| CLIENTE : "pode ser"
+    USUARIO ||--o| FUNCIONARIO : "pode ser"
+    CLIENTE ||--o| CLIENTE_PF : "classificado PF"
+    CLIENTE ||--o| CLIENTE_PJ : "classificado PJ"
+    CLIENTE ||--o{ ORDEM_SERVICO : "solicita"
+    FUNCIONARIO ||--o{ ORDEM_SERVICO : "executa"
+    ORDEM_SERVICO ||--o{ VISITA_TECNICA : "gera"
+    ORDEM_SERVICO ||--|| CONTA_RECEBER : "gera"
+    ORDEM_SERVICO ||--o{ ORDEM_SERVICO_EQUIPAMENTO : "contem"
+    EQUIPAMENTO ||--o{ ORDEM_SERVICO_EQUIPAMENTO : "utilizado"
+```
+### Descrição das Entidades
 
-    CLIENTE ||--o{ EQUIPAMENTO : possui
-    CLIENTE ||--o{ ORDEM_SERVICO : solicita
-    FUNCIONARIO ||--o{ VISITA_TECNICA : realiza
-    ORDEM_SERVICO ||--o{ VISITA_TECNICA : possui
-    ORDEM_SERVICO ||--o{ CONTA : gera
-    ORDEM_SERVICO ||--o{ ORDEM_SERVICO_EQUIPAMENTO : vincula
-    EQUIPAMENTO ||--o{ ORDEM_SERVICO_EQUIPAMENTO : pertence
+Entidade                          |	Descrição   |
+---------                         | ----------- |
+Usuário	   | Entidade base para autenticação, contendo credenciais de acesso (email e senha). |
+Cliente	   | Entidade base para clientes, contendo atributos comuns a qualquer cliente (nome, endereço, contato). Possui uma especialização total e disjunta para CPF e CNPJ. |
+Cliente CPF	| Especialização da entidade Cliente. Armazena dados específicos de Pessoa Física: CPF e data de nascimento. |
+Cliente CNPJ	| Especialização da entidade Cliente. Armazena dados específicos de Pessoa Jurídica: CNPJ, razão social e nome fantasia. |
+Funcionário	 | Herda de Usuário. Armazena dados profissionais, diferenciando Técnico e Administrativo (especialização total e disjunta). |
+Ordem de Serviço | Núcleo do sistema, registra cada solicitação de serviço, seu status, valor, e vincula cliente e técnico responsável. |
+Equipamento	| Representa os itens que serão reparados ou utilizados nos serviços. |
+Ordem de Serviço Equipamento | Tabela de relacionamento muitos-para-muitos entre OS e Equipamento. |
+Visita Técnica | Vinculada a uma OS, registra agendamentos e realizações de atendimentos presenciais. |
+Conta a Receber	| Gerada automaticamente ao encerrar uma OS, registra o valor a ser pago pelo cliente. |
+
+---
+
+## Entidade-Relacionamento
+
+### Dicionário de Dados
+
+|   Tabela   | USUARIO |
+| ---------- | ----------- |
+| Descrição  | Armazena as credenciais de autenticação dos usuários do sistema. |
+| Observação | Um usuário pode ser cliente ou funcionário, mas não ambos simultaneamente. |
+
+|  Nome         | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
+| ------------- | -------------------------------- | ------------ | ------- | --------------------- |
+| id | Identificador único gerado pelo SGBD	| SERIAL | --- | PK / Identity |
+| e-mail | e-mail do usuário utilizado para login  | VARCHAR | 150 | Unique / Not Null |
+| senha  | Senha criptografada do usuário | VARCHAR | 255 | Not Null |
+
+|   Tabela   | CLIENTE |
+| ---------- | ----------- |
+| Descrição  | Armazena as informações gerais dos clientes da assistência técnica. |
+| Observação | Clientes podem ser Pessoa Física (PF) ou Pessoa Jurídica (PJ). A diferenciação é feita pelo campo tipo, com dados complementares armazenados nas tabelas Cliente_PF e Cliente_PJ. |
+
+
+|  Nome         | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
+| ------------- | -------------------------------- | ------------ | ------- | --------------------- |
+| id | Identificador único | SERIAL | --- | PK / Identity |
+| nome | Nome completo do cliente (PF) ou razão social (PJ) | VARCHAR | 150 | Not Null |
+| endereco  | Endereço completo do cliente | VARCHAR | 200 | --- |
+| contato | Telefone para contato | ENUM | 12 | --- |
+| tipo | Classificação do cliente (PF ou PJ) | VARCHAR | --- | PF, PJ / Not Null |
+
+
+|   Tabela   | CLIENTE_PF |
+| ---------- | ----------- |
+| Descrição  | Armazena informações específicas de clientes do tipo Pessoa Física. |
+| Observação | Todo cliente PF deve ter um registro correspondente na tabela Cliente.|
+
+
+|  Nome         | Descrição                        | Tipo de Dado | Tamanho | Restrições de Domínio |
+| ------------- | -------------------------------- | ------------ | ------- | --------------------- |
+| id | Identificador único | SERIAL | --- | PK / Identity |
+| nome | Nome completo do cliente (PF) ou razão social (PJ) | VARCHAR | 150 | Not Null |
+| endereco  | Endereço completo do cliente | VARCHAR | 200 | --- |
+| contato | Telefone para contato | ENUM | 12 | --- |
+| tipo | Classificação do cliente (PF ou PJ) | VARCHAR | --- | PF, PJ / Not Null |
