@@ -201,7 +201,7 @@ Conta a Receber	| Gerada automaticamente ao encerrar uma OS, registra o valor a 
 | cpf |	Cadastro de Pessoa Física |	VARCHAR | 14 | Unique / Not Null |
 | contato | Telefone para contato | VARCHAR | 20 | --- |
 | salario |	Salário base do funcionário | DECIMAL(10,2) | --- |	Not Null |
-| tipo | Classificação do funcionário (técnico ou administrativo) | VARCHAR | 2 | PF, PJ / Not Null |
+| tipo | Classificação do funcionário (técnico ou administrativo) | VARCHAR | 2 | CHECK (tipo IN ('TECNICO','ADMINISTRATIVO')) / Not Null |
 | data_admissao	| Data de contratação |	DATE | --- | Not Null |
 | horario_expediente | Horário de trabalho | VARCHAR | 50 |	--- |
 | status |	Situação do funcionário	| VARCHAR |	10	| CHECK (status IN ('ATIVO','FERIAS','AFASTADO','DESATIVADO'))
