@@ -33,7 +33,7 @@ O sistema poderá ser utilizado por diversos usuários. Temos os seguintes perfi
 Perfil                                 | Descrição   |
 ---------                              | ----------- |
 Cliente | Este usuário pode verificar suas ordens de serviço, consultar contas a receber e realizar pagamentos online de serviços concluídos.
-Administrativo | Este usuário é responsável pela gestão do sistema, cadastro de informações, controle financeiro e registro de pagamentos recebidos fora do sistema.
+Administrador | Este usuário é responsável pela gestão do sistema, cadastro de informações, controle financeiro e registro de pagamentos recebidos fora do sistema.
 Técnico | Este usuário é responsável pela execução dos serviços, atualização das ordens de serviço e registro de peças utilizadas.
 
 ---
@@ -47,10 +47,10 @@ Regra: Um cliente deve ser obrigatoriamente CPF ou CNPJ, não podendo ser ambos.
 
 Requisito                     | Descrição   | Ator |
 ---------                     | ----------- | ---------- |
-RF01.1 - Cadastrar Cliente    | Insere novo novo cliente informando: id, nome, endereço, contato, CPF. | Administrativo |
-RF01.2 - Alterar Cliente      | Atualiza qualquer dado contido no cadastro do cliente, caso seja necessário. | Administrativo |
-RF01.3 - Consultar Cliente   | Consulta do cliente através dos dados do mesmo. | Administrativo, Técnico |
-RF01.4 - Desativar Cliente   | Desativar um cliente informando o id. | Administrativo |
+RF01.1 - Cadastrar Cliente    | Insere novo cliente informando: id, nome, endereço, contato, CPF. | Administrador |
+RF01.2 - Alterar Cliente      | Atualiza qualquer dado contido no cadastro do cliente, caso seja necessário. | Administrador |
+RF01.3 - Consultar Cliente   | Consulta do cliente através dos dados do mesmo. | Administrador, Técnico |
+RF01.4 - Desativar Cliente   | Desativar um cliente informando o id. | Administrador |
 
 ---
 
@@ -59,10 +59,10 @@ Um funcionário representa o usuário responsável pelas operações do sistema,
 
 Requisito                     | Descrição   | Ator           |
 ---------                     | ----------- | ----------     |
-RF02.1 - Cadastrar Funcionário | Insere novo funcionário informando: código, nome, CPF, cargo, salario, carteira, expendiente. | Administrativo |
-RF02.2 - Alterar Funcionário | Atualiza um funcionário informando: código, nome, CPF, cargo, salario, carteira, expendiente. | Administrativo |
-RF02.3 - Consultar Funcionário |  Consulta do funcionário através dos dados do mesmo. | Administrativo |
-RF02.4 - Desativar Funcionário | Desativar um funcionário informando o id. | Administrativo |
+RF02.1 - Cadastrar Funcionário | Insere novo funcionário informando: código, nome, CPF, cargo, salario, carteira, expediente. | Administrador |
+RF02.2 - Alterar Funcionário | Atualiza um funcionário informando: código, nome, CPF, cargo, salario, carteira, expediente. | Administrador |
+RF02.3 - Consultar Funcionário |  Consulta do funcionário através dos dados do mesmo. | Administrador |
+RF02.4 - Desativar Funcionário | Desativar um funcionário informando o id. | Administrador |
 
 ---
 
@@ -73,7 +73,7 @@ Requisito                     | Descrição   | Ator           |
 ---------                     | ----------- | ----------     |
 RF03.1 - Abrir ordem de Serviço  | Criar de order de serviço para solicitação de reparo ou manutenção, incluir informações sobre o cliente, descrição do problema e quaisquer detalhes relevantes. | Administrador |
 RF03.2 - Editar ordem de serviço | Atualiza uma OS informando:informações sobre o cliente, descrição do problema e quaisquer detalhes relevantes. | Administrador |
-RF03.3 - Consultar ordem de serviço | Consulta uma OS informando: id. | Técnico, Administrador, cliente |
+RF03.3 - Consultar ordem de serviço | Consulta uma OS informando: id. | Técnico, Administrador, Cliente |
 RF03.4 - Atualizar Status da OS         | Alterar o status da OS conforme andamento. | Técnico, Administrador |
 RF03.5 - Encerrar ordem de serviço         | Encerramento da OS após a conclusão das atividades.  | Técnico |
 RF03.6 - Emitir Relatório         | Gerar relatórios diversos, como histórico de serviços realizados, faturamento por período, entre outros.  | Técnico, Administrador |
@@ -108,7 +108,7 @@ Ao salvar uma OS é criado um conta receber automaticamente, na qual possuir: id
 Requisito                     | Descrição   | Ator           |
 ---------                     | ----------- | ----------     |
 RF06.1 - Registrar Conta Receber | Ao salvar uma OS é criado um conta receber automaticamente. | Sistema |
-RF06.2 - Registrar Pagamento Offline | O sistema deve permitir que o funcionário administrativo registre pagamentos recebidos fora do sistema. |	Administrativo |
+RF06.2 - Registrar Pagamento Offline | O sistema deve permitir que o funcionário administrativo registre pagamentos recebidos fora do sistema. | Administrador |
 
 ---
 
@@ -131,9 +131,9 @@ Permite que usuários (clientes e funcionários) realizem autenticação no sist
 
 Requisito                     | Descrição   | Ator                      |
 ---------                     | ----------- | ----------                |
-RF08.1 - Realizar Login       | Autenticar usuário com e-mail e senha, gerando sessão ou token de acesso | Cliente, Administrativo, Técnico |
-RF08.2 - Recuperar Senha      | Permitir que o usuário recupere sua senha via e-mail | Cliente, Administrativo, Técnico |
-RF08.3 - Logout               | Encerrar a sessão do usuário no sistema | Cliente, Administrativo, Técnico |
+RF08.1 - Realizar Login       | Autenticar usuário com e-mail e senha, gerando sessão ou token de acesso | Cliente, Administrador, Técnico |
+RF08.2 - Recuperar Senha      | Permitir que o usuário recupere sua senha via e-mail | Cliente, Administrador, Técnico |
+RF08.3 - Logout               | Encerrar a sessão do usuário no sistema | Cliente, Administrador, Técnico |
 
 ### Modelo Conceitual
 
@@ -152,7 +152,8 @@ erDiagram
         string nome
         string endereco
         string contato
-        string tipo
+        string tipo  # 'PF' ou 'PJ'
+        # CPF e CNPJ vão nas tabelas especializadas
     }
     
     CLIENTE_PF {
